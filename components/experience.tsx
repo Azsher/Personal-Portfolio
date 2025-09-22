@@ -3,17 +3,21 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import Image from "next/image"
+import { useGsapFadeInUp, useGsapStaggerCards } from "@/hooks/use-gsap-animations"
 
 export function Experience() {
+  const titleRef = useGsapFadeInUp("#experience")
+  const cardsRef = useGsapFadeInUp(".experience-card")
+
   return (
     <section id="experience" className="container mx-auto px-4 py-16 sm:py-20">
-      <h2 className="mb-8 text-center text-4xl font-extrabold tracking-tight text-white sm:text-5xl">
+      <h2 ref={titleRef} className="mb-8 text-center text-4xl font-extrabold tracking-tight text-white sm:text-5xl">
         Experiencia Laboral
       </h2>
 
-      <div className="space-y-6">
+      <div ref={cardsRef} className="space-y-6">
         {/* Nova Academy - Automation Trainee */}
-        <Card className="liquid-glass border border-white/10 bg-white/5 backdrop-blur-xl">
+        <Card className="experience-card liquid-glass border border-white/10 bg-white/5 backdrop-blur-xl">
           <CardHeader>
             <div className="flex items-start gap-4">
               <div className="flex-shrink-0">
@@ -61,7 +65,7 @@ export function Experience() {
         </Card>
 
         {/* Nova Academy - Gen AI Trainee */}
-        <Card className="liquid-glass border border-white/10 bg-white/5 backdrop-blur-xl">
+        <Card className="experience-card liquid-glass border border-white/10 bg-white/5 backdrop-blur-xl">
           <CardHeader>
             <div className="flex items-start gap-4">
               <div className="flex-shrink-0">
