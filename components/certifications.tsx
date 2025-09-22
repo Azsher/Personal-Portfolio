@@ -3,9 +3,13 @@
 import { Button } from "@/components/ui/button"
 import { useState } from "react"
 import { Badge } from "@/components/ui/badge"
+import { useGsapFadeInUp } from "@/hooks/use-gsap-animations"
 
 export function Certifications() {
   const [pausedRow, setPausedRow] = useState<string | null>(null)
+  const titleRef = useGsapFadeInUp("#certifications")
+  const firstRowRef = useGsapFadeInUp("#certifications", 0.3)
+  const secondRowRef = useGsapFadeInUp("#certifications", 0.6)
 
   // Certification data
   const certifications = [
@@ -45,10 +49,10 @@ export function Certifications() {
   )
 
   return (
-    <section className="text-white py-16 sm:py-20 overflow-hidden">
+    <section id="certifications" className="text-white py-16 sm:py-20 overflow-hidden">
       <div className="container mx-auto px-4">
         {/* Header */}
-        <div className="flex flex-col items-center justify-between mb-12 sm:flex-row sm:items-center">
+        <div ref={titleRef} className="flex flex-col items-center justify-between mb-12 sm:flex-row sm:items-center">
           <h2 className="text-4xl font-extrabold tracking-tight text-white sm:text-5xl text-center sm:text-left">
             Mis <span className="text-lime-300">certificaciones</span>
             <br />
@@ -68,7 +72,7 @@ export function Certifications() {
         {/* Certification Marquee */}
         <div className="relative">
           {/* First Row - Scrolling Right */}
-          <div className="flex overflow-hidden mb-6 [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]">
+          <div ref={firstRowRef} className="flex overflow-hidden mb-6 [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]">
             <div
               className={`flex animate-scroll-right whitespace-nowrap ${pausedRow === "first" ? "animation-play-state-paused" : ""}`}
               style={{
@@ -84,7 +88,7 @@ export function Certifications() {
           </div>
 
           {/* Second Row - Scrolling Left */}
-          <div className="flex overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]">
+          <div ref={secondRowRef} className="flex overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]">
             <div
               className={`flex animate-scroll-left whitespace-nowrap ${pausedRow === "second" ? "animation-play-state-paused" : ""}`}
               style={{
