@@ -2,15 +2,19 @@
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import Image from "next/image"
+import { useGsapFadeInUp, useGsapStaggerCards } from "@/hooks/use-gsap-animations"
 
 export function About() {
+  const titleRef = useGsapFadeInUp("#about")
+  const cardsRef = useGsapFadeInUp(".about-card")
+
   return (
     <section id="about" className="container mx-auto px-4 py-16 sm:py-20">
-      <h2 className="mb-8 text-center text-4xl font-extrabold tracking-tight text-white sm:text-5xl">Sobre Mí</h2>
+      <h2 ref={titleRef} className="mb-8 text-center text-4xl font-extrabold tracking-tight text-white sm:text-5xl">Sobre Mí</h2>
 
-      <div className="grid gap-6 md:grid-cols-2">
+      <div ref={cardsRef} className="grid gap-6 md:grid-cols-2">
         {/* Professional Summary Card */}
-        <Card className="liquid-glass border border-white/10 bg-white/5 backdrop-blur-xl">
+        <Card className="about-card liquid-glass border border-white/10 bg-white/5 backdrop-blur-xl">
           <CardHeader>
             <p className="text-[11px] tracking-widest text-neutral-400">RESUMEN PROFESIONAL</p>
             <CardTitle className="mt-1 text-xl text-white">Desarrollador full-stack y especialista en automatización</CardTitle>
@@ -26,7 +30,7 @@ export function About() {
         </Card>
 
         {/* Education & Location Card */}
-        <Card className="liquid-glass border border-white/10 bg-white/5 backdrop-blur-xl">
+        <Card className="about-card liquid-glass border border-white/10 bg-white/5 backdrop-blur-xl">
           <CardHeader>
             <p className="text-[11px] tracking-widest text-neutral-400">EDUCACIÓN & UBICACIÓN</p>
             <CardTitle className="mt-1 text-xl text-white">Formación académica sólida</CardTitle>
