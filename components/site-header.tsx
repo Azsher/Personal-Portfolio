@@ -7,8 +7,11 @@ import { Button } from "@/components/ui/button"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 import { Menu, User, Briefcase, Code, Mail, FileText, Download } from "lucide-react"
 import Image from "next/image"
+import { useGsapSmoothScroll } from "@/hooks/use-gsap-animations"
 
 export function SiteHeader() {
+  const { scrollTo } = useGsapSmoothScroll()
+  
   const links = [
     { href: "#about", label: "Sobre Mí", icon: User },
     { href: "#experience", label: "Experiencia", icon: Briefcase },
@@ -19,10 +22,7 @@ export function SiteHeader() {
 
   const handleSmoothScroll = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault()
-    const element = document.querySelector(href)
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" })
-    }
+    scrollTo(href)
   }
 
   return (
