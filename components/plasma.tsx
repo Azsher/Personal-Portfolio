@@ -111,26 +111,25 @@ export const Plasma: React.FC<PlasmaProps> = ({
   useEffect(() => {
     if (!containerRef.current) return
 
-    // --- Device detection ---
-    const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent)
-    const isMobile = window.innerWidth < 768
-
+    // Configuración simplificada para desktop únicamente
     const useCustomColor = color ? 1.0 : 0.0
     const customColorRgb = color ? hexToRgb(color) : [1, 1, 1]
     const directionMultiplier = direction === "reverse" ? -1.0 : 1.0
 
-    // Lower DPR on mobile/iOS
     const renderer = new Renderer({
       webgl: 2,
       alpha: true,
-      antialias: false,
-      dpr: Math.min(window.devicePixelRatio || 1, 2) * (isIOS || isMobile ? 0.5 : 1),
+      antialias: true,
+      dpr: Math.min(window.devicePixelRatio || 1, 2),
+      powerPreference: "high-performance",
     })
+    
     const gl = renderer.gl
     const canvas = gl.canvas as HTMLCanvasElement
     canvas.style.display = "block"
     canvas.style.width = "100%"
     canvas.style.height = "100%"
+    
     containerRef.current.appendChild(canvas)
 
     const geometry = new Triangle(gl)
@@ -148,15 +147,15 @@ export const Plasma: React.FC<PlasmaProps> = ({
         uScale: { value: scale },
         uOpacity: { value: opacity },
         uMouse: { value: new Float32Array([0, 0]) },
-        uMouseInteractive: { value: isIOS ? 0.0 : mouseInteractive ? 1.0 : 0.0 },
+        uMouseInteractive: { value: mouseInteractive ? 1.0 : 0.0 },
       },
     })
 
     const mesh = new Mesh(gl, { geometry, program })
 
-    // --- Mouse interaction (skip on iOS) ---
+    // Mouse interaction (solo desktop)
     const handleMouseMove = (e: MouseEvent) => {
-      if (isIOS || !mouseInteractive) return
+      if (!mouseInteractive) return
       const rect = containerRef.current!.getBoundingClientRect()
       mousePos.current.x = e.clientX - rect.left
       mousePos.current.y = e.clientY - rect.top
@@ -164,11 +163,12 @@ export const Plasma: React.FC<PlasmaProps> = ({
       mouseUniform[0] = mousePos.current.x
       mouseUniform[1] = mousePos.current.y
     }
-    if (!isIOS && mouseInteractive) {
-      containerRef.current.addEventListener("mousemove", handleMouseMove)
+    
+    if (mouseInteractive) {
+      containerRef.current.addEventListener("mousemove", handleMouseMove, { passive: true })
     }
 
-    // --- Resize handling ---
+    // Resize handling
     const setSize = () => {
       const rect = containerRef.current!.getBoundingClientRect()
       const width = Math.max(1, Math.floor(rect.width))
@@ -178,39 +178,52 @@ export const Plasma: React.FC<PlasmaProps> = ({
       res[0] = gl.drawingBufferWidth
       res[1] = gl.drawingBufferHeight
     }
+    
     const ro = new ResizeObserver(setSize)
     ro.observe(containerRef.current)
     setSize()
 
-    // --- Animation loop ---
+    // Animation loop simple para desktop
     let raf = 0
-    let lastTime = 0
     const t0 = performance.now()
+    
     const loop = (t: number) => {
-      const delta = t - lastTime
-      if (!isIOS || delta > 33) { // 60fps desktop, ~30fps iOS
-        const timeValue = (t - t0) * 0.001
-        if (direction === "pingpong") {
-          const cycle = Math.sin(timeValue * 0.5) * directionMultiplier
-          ;(program.uniforms.uDirection as any).value = cycle
-        }
-        ;(program.uniforms.iTime as any).value = timeValue
-        renderer.render({ scene: mesh })
-        lastTime = t
+      const timeValue = (t - t0) * 0.001
+      
+      if (direction === "pingpong") {
+        const cycle = Math.sin(timeValue * 0.5) * directionMultiplier
+        ;(program.uniforms.uDirection as any).value = cycle
       }
+      
+      ;(program.uniforms.iTime as any).value = timeValue
+      
+      try {
+        renderer.render({ scene: mesh })
+      } catch (error) {
+        console.warn("Plasma render error:", error)
+      }
+      
       raf = requestAnimationFrame(loop)
     }
+    
+    // Inicio inmediato en desktop
     raf = requestAnimationFrame(loop)
 
     return () => {
       cancelAnimationFrame(raf)
       ro.disconnect()
-      if (!isIOS && mouseInteractive && containerRef.current) {
+      
+      if (mouseInteractive && containerRef.current) {
         containerRef.current.removeEventListener("mousemove", handleMouseMove)
       }
+      
       try {
-        containerRef.current?.removeChild(canvas)
-      } catch {}
+        if (containerRef.current && canvas.parentNode === containerRef.current) {
+          containerRef.current.removeChild(canvas)
+        }
+      } catch (error) {
+        console.warn("Error removing canvas:", error)
+      }
     }
   }, [color, speed, direction, scale, opacity, mouseInteractive])
 

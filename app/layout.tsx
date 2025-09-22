@@ -3,7 +3,7 @@ import "./globals.css"
 import type { Metadata } from "next"
 import { Inter } from "next/font/google"
 import Script from "next/script"
-import Plasma from "@/components/plasma"
+import AdaptiveBackground from "@/components/adaptive-background"
 import { SmoothScrollProvider } from "@/components/smooth-scroll"
 import { SiteHeader } from "@/components/site-header"
 
@@ -75,9 +75,16 @@ export default function RootLayout({
         </Script>
       </head>
       <body>
-        {/* Fondo plasma completamente fijo - fuera del smooth scroll */}
+        {/* Fondo adaptativo completamente fijo - fuera del smooth scroll */}
         <div className="fixed inset-0 z-0 bg-black">
-          <Plasma color="#8b5cf6" speed={0.8} direction="forward" scale={1.7} opacity={0.8} mouseInteractive={true} />
+          <AdaptiveBackground 
+            color="#8b5cf6" 
+            speed={0.8} 
+            direction="forward" 
+            scale={1.7} 
+            opacity={0.8} 
+            mouseInteractive={true}
+          />
         </div>
         
         {/* Header completamente fuera del smooth scroll */}

@@ -5,9 +5,26 @@ import { gsap } from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
 import { ScrollToPlugin } from "gsap/ScrollToPlugin"
 
-// Registrar los plugins de ScrollTrigger y ScrollTo
+// Registrar los plugins de ScrollTrigger y ScrollTo con configuración optimizada
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger, ScrollToPlugin)
+  
+  // Configuración optimizada para móviles
+  const isMobile = window.innerWidth < 768
+  
+  if (isMobile) {
+    // Reducir frecuencia de refresh en móviles
+    ScrollTrigger.config({
+      syncInterval: 150, // vs default 17
+      autoRefreshEvents: "visibilitychange,DOMContentLoaded,load"
+    })
+    
+    // Configurar GSAP para mejor rendimiento en móviles
+    gsap.config({
+      force3D: true,
+      nullTargetWarn: false
+    })
+  }
 }
 
 export function useGsapFadeInUp(trigger?: string, delay: number = 0) {
@@ -17,23 +34,28 @@ export function useGsapFadeInUp(trigger?: string, delay: number = 0) {
     if (!elementRef.current) return
 
     const element = elementRef.current
+    const isMobile = window.innerWidth < 768
 
     gsap.fromTo(
       element,
       {
         opacity: 0,
-        y: 50,
+        y: isMobile ? 30 : 50, // Menor movimiento en móviles
       },
       {
         opacity: 1,
         y: 0,
-        duration: 0.8,
+        duration: isMobile ? 0.6 : 0.8, // Más rápido en móviles
         delay,
         ease: "power2.out",
+        force3D: true, // Forzar aceleración por hardware
+        willChange: "transform, opacity", // Optimizar para cambios
         scrollTrigger: {
           trigger: trigger || element,
           start: "top 80%",
           toggleActions: "play none none reverse",
+          fastScrollEnd: isMobile ? true : false, // Optimización móvil
+          refreshPriority: isMobile ? -1 : 0 // Menor prioridad en móviles
         },
       }
     )
