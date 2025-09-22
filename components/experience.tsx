@@ -23,7 +23,7 @@ export function Experience() {
               <div className="flex-shrink-0">
                 <div className="w-12 h-12 rounded-xl overflow-hidden bg-white/10 border border-white/20 flex items-center justify-center">
                   <Image
-                    src="/images/nova.jpeg"
+                    src="/images/nova.webp"
                     alt="Nova Academy Logo"
                     width={48}
                     height={48}
@@ -71,7 +71,7 @@ export function Experience() {
               <div className="flex-shrink-0">
                 <div className="w-12 h-12 rounded-xl overflow-hidden bg-white/10 border border-white/20 flex items-center justify-center">
                   <Image
-                    src="/images/nova.jpeg"
+                    src="/images/nova.webp"
                     alt="Nova Academy Logo"
                     width={48}
                     height={48}

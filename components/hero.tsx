@@ -12,7 +12,7 @@ export function Hero() {
           <div className="mb-5 flex items-center gap-2">
             <div className="h-8 w-8 rounded-full overflow-hidden">
               <Image
-                src="/images/oscar-profile.jpg"
+                src="/images/oscar-profile.webp"
                 alt="Oscar Antayhua"
                 width={32}
                 height={32}

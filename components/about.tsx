@@ -41,7 +41,7 @@ export function About() {
                 <div className="flex-shrink-0">
                   <div className="w-12 h-12 rounded-xl overflow-hidden bg-white/10 border border-white/20 flex items-center justify-center">
                     <Image
-                      src="/images/upc.jpg"
+                      src="/images/upc.webp"
                       alt="UPC Logo"
                       width={48}
                       height={48}

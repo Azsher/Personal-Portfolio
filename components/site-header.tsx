@@ -33,7 +33,7 @@ export function SiteHeader() {
           <Link href="/" className="flex items-center gap-1.5">
             <div className="h-5 w-5 rounded-full overflow-hidden">
               <Image
-                src="/images/oscar-profile.jpg"
+                src="/images/oscar-profile.webp"
                 alt="Oscar Antayhua"
                 width={20}
                 height={20}
@@ -89,7 +89,7 @@ export function SiteHeader() {
                 <div className="flex items-center gap-1.5 px-4 py-4 border-b border-gray-800">
                   <div className="h-6 w-6 rounded-full overflow-hidden">
                     <Image
-                      src="/images/oscar-profile.jpg"
+                      src="/images/oscar-profile.webp"
                       alt="Oscar Antayhua"
                       width={24}
                       height={24}
