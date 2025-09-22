@@ -3,13 +3,17 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Mail, Phone, MapPin, Linkedin, Github, Instagram } from "lucide-react"
+import { useGsapFadeInUp } from "@/hooks/use-gsap-animations"
 
 export function Contact() {
+  const titleRef = useGsapFadeInUp("#contact")
+  const cardRef = useGsapFadeInUp(undefined, 0.3)
+
   return (
     <section id="contact" className="container mx-auto  py-16 sm:py-20">
-      <h2 className="mb-8 text-center text-4xl font-extrabold tracking-tight text-white sm:text-5xl">Contacto</h2>
+      <h2 ref={titleRef} className="mb-8 text-center text-4xl font-extrabold tracking-tight text-white sm:text-5xl">Contacto</h2>
 
-      <div className="max-w-2xl mx-auto">
+      <div ref={cardRef} className="max-w-2xl mx-auto">
         {/* Contact Info */}
         <Card className="liquid-glass border border-white/10 bg-white/5 backdrop-blur-xl">
           <CardHeader>
