@@ -2,17 +2,21 @@
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
+import { useGsapFadeInUp, useGsapStaggerCards } from "@/hooks/use-gsap-animations"
 
 export function Skills() {
+  const titleRef = useGsapFadeInUp("#skills")
+  const cardsRef = useGsapFadeInUp(".skill-card")
+
   return (
     <section id="skills" className="container mx-auto px-4 py-16 sm:py-20">
-      <h2 className="mb-8 text-center text-4xl font-extrabold tracking-tight text-white sm:text-5xl">
+      <h2 ref={titleRef} className="mb-8 text-center text-4xl font-extrabold tracking-tight text-white sm:text-5xl">
         Habilidades & Certificaciones
       </h2>
 
-      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+      <div ref={cardsRef} className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
         {/* Automation & Productivity */}
-        <Card className="liquid-glass border border-white/10 bg-white/5 backdrop-blur-xl">
+        <Card className="skill-card liquid-glass border border-white/10 bg-white/5 backdrop-blur-xl">
           <CardHeader>
             <CardTitle className="text-lg text-white">Automatización & Productividad</CardTitle>
           </CardHeader>
