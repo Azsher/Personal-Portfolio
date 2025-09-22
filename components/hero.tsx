@@ -1,12 +1,14 @@
+"use client"
+
 import { Button } from "@/components/ui/button"
 import { Download, Mail, Linkedin, Github, Instagram } from "lucide-react"
 import Image from "next/image"
 
 export function Hero() {
   return (
-    <section className="relative isolate overflow-hidden">
+    <section className="relative isolate overflow-hidden min-h-screen">
       <div className="container mx-auto px-4">
-        <div className="flex flex-col items-center justify-center py-14 sm:py-20">
+        <div className="flex flex-col items-center justify-center min-h-screen pt-20 pb-8">
           <div className="mb-5 flex items-center gap-2">
             <div className="h-8 w-8 rounded-full overflow-hidden">
               <Image
@@ -20,10 +22,10 @@ export function Hero() {
             <p className="text-sm uppercase tracking-[0.25em] text-lime-300/80">Oscar Antayhua</p>
           </div>
           <h1 className="mt-3 text-center text-4xl font-extrabold tracking-tight sm:text-5xl md:text-6xl">
-            <span className="block">SOFTWARE</span>
+            <span className="block text-white">SOFTWARE</span>
             <span className="block text-lime-300 drop-shadow-[0_0_20px_rgba(132,204,22,0.35)]">ENGINEER</span>
-            <span className="block">& AUTOMATION</span>
-            <span className="block">SPECIALIST</span>
+            <span className="block text-white">& AUTOMATION</span>
+            <span className="block text-white">SPECIALIST</span>
           </h1>
           <p className="mt-6 max-w-2xl text-center text-lg text-neutral-300">
             Estudiante de 8vo ciclo especializado en automatización de procesos, análisis de datos y desarrollo web.
@@ -80,7 +82,8 @@ export function Hero() {
                 <Instagram className="h-5 w-5" />
               </a>
             </Button>
-          </div>          
+          </div>
+
         </div>
       </div>
     </section>
@@ -99,7 +102,7 @@ function SkillCard({
   gradient: string
 }) {
   return (
-    <div className="relative rounded-[28px] glass-border bg-neutral-900 p-4">
+    <div className="animate-card relative rounded-[28px] glass-border bg-neutral-900 p-4">
       <div className={`relative aspect-square w-full overflow-hidden rounded-2xl bg-gradient-to-br ${gradient}`}>
         <div className="relative z-10 p-4 h-full flex flex-col justify-between">
           <div className="text-2xl">{icon}</div>
