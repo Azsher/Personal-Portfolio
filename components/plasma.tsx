@@ -24,7 +24,7 @@ const hexToRgb = (hex: string): [number, number, number] => {
   ]
 }
 
-a
+
 const vertex = `#version 300 es
 precision highp float;
 in vec2 position;
