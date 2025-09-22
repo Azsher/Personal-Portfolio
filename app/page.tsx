@@ -1,4 +1,3 @@
-import { SiteHeader } from "@/components/site-header"
 import { Hero } from "@/components/hero"
 import { About } from "@/components/about"
 import { Experience } from "@/components/experience"
@@ -34,9 +33,10 @@ export default function Page() {
 
   return (
     <>
-      <main className="min-h-[100dvh] text-white">
-        <SiteHeader />
-        <Hero />
+      {/* Hero fuera del smooth scroll - permanece fijo */}
+      <Hero />
+      
+      <main className="text-white">
         <About />
         <Experience />
         <Projects />
