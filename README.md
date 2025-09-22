@@ -188,8 +188,7 @@ Este proyecto está bajo la Licencia MIT. Ver `LICENSE` para más detalles.
 ## 👨‍💻 Autor
 
 **Oscar Antayhua**
-- Website: [oscarantayhua.com](https://oscarantayhua.com)
-- LinkedIn: [oscar-antayhua](https://linkedin.com/in/oscar-antayhua)
+- LinkedIn: [Oscar Antayhua](https://linkedin.com/in/oscar-antayhua)
 - GitHub: [Azsher](https://github.com/Azsher)
 - Email: oscar.antayhuac@gmail.com
 
