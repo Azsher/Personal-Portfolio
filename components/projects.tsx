@@ -4,17 +4,21 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { ExternalLink, Github } from "lucide-react"
+import { useGsapFadeInUp, useGsapStaggerCards } from "@/hooks/use-gsap-animations"
 
 export function Projects() {
+  const titleRef = useGsapFadeInUp("#projects")
+  const cardsRef = useGsapFadeInUp(".project-card")
+
   return (
     <section id="projects" className="container mx-auto px-4 py-16 sm:py-20">
-      <h2 className="mb-8 text-center text-4xl font-extrabold tracking-tight text-white sm:text-5xl">
+      <h2 ref={titleRef} className="mb-8 text-center text-4xl font-extrabold tracking-tight text-white sm:text-5xl">
         Proyectos Destacados
       </h2>
 
-      <div className="grid gap-6 md:grid-cols-2">
+      <div ref={cardsRef} className="grid gap-6 md:grid-cols-2">
         {/* TocaAquí Platform */}
-        <Card className="liquid-glass border border-white/10 bg-white/5 backdrop-blur-xl">
+        <Card className="project-card liquid-glass border border-white/10 bg-white/5 backdrop-blur-xl">
           <CardHeader>
             <CardTitle className="text-xl text-white">Plataforma Web TocaAquí</CardTitle>
             <p className="text-neutral-400">Sistema completo para conectar músicos con espacios culturales</p>
@@ -65,7 +69,7 @@ export function Projects() {
         </Card>
 
         {/* Inmoshare Platform */}
-        <Card className="liquid-glass border border-white/10 bg-white/5 backdrop-blur-xl">
+        <Card className="project-card liquid-glass border border-white/10 bg-white/5 backdrop-blur-xl">
           <CardHeader>
             <CardTitle className="text-xl text-white">Inmoshare</CardTitle>
             <p className="text-neutral-400">Plataforma de gestión de bienes raíces con pagos compartidos</p>
