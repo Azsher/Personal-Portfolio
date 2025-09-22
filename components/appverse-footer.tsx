@@ -3,14 +3,18 @@
 import Link from "next/link"
 import { Card } from "@/components/ui/card"
 import { Linkedin, Github, Mail, MapPin, Phone, Instagram } from "lucide-react"
+import { useGsapFadeInUp } from "@/hooks/use-gsap-animations"
+
 
 export function AppverseFooter() {
+  const footerRef = useGsapFadeInUp()
+
   return (
-    <section  id="contact" className="text-white">
+    <section id="contact" className="text-white">
       {/* Download CV Section - Simplified to reduce button saturation */}
 
       {/* Footer */}
-      <footer className="border-t border-white/10 pb-20 md:pb-10">
+      <footer ref={footerRef} className="border-t border-white/10 pb-20 md:pb-10">
         <div className="container mx-auto px-4 py-10">
           <div className="grid gap-8 md:grid-cols-[1.2fr_1fr_1fr]">
             {/* Brand */}
