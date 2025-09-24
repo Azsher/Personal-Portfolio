@@ -13,23 +13,22 @@ export function Certifications() {
 
   // Certification data
   const certifications = [
-    { name: "SQL Intermediate", provider: "HackerRank", year: "2025", color: "text-blue-400" },
-    { name: "Make Foundation", provider: "Make", year: "2024", color: "text-purple-400" },
-    { name: "Scrum Foundation", provider: "CertiProf", year: "2023", color: "text-green-400" },
-    { name: "Google Cybersecurity", provider: "Google", year: "2025", color: "text-red-400" },
-    { name: "Excel Intermediate I", provider: "Macquarie University", year: "2021", color: "text-emerald-400" },
-    { name: "MongoDB Intro", provider: "MongoDB", year: "2023", color: "text-green-500" },
-    { name: "Writing & Editing", provider: "University of Michigan", year: "2022", color: "text-yellow-400" },
-    { name: "Inmersion IA", provider: "Alura", year: "2025", color: "text-pink-400" },
+    { name: "SQL Intermediate", provider: "HackerRank", year: "2025", color: "text-blue-400", link: "https://www.hackerrank.com/certificates/1ca1438e71d9" },
+    { name: "Make Foundation", provider: "Make", year: "2024", color: "text-purple-400", link: "https://www.credly.com/badges/f2667be8-2894-4bce-9392-961babaf6809/linked_in_profile" },
+    { name: "Scrum Foundation", provider: "CertiProf", year: "2023", color: "text-green-400", link: "https://www.credly.com/badges/dca81f7f-6892-49ed-9053-d5a4f936e025/linked_in_profile" },
+    { name: "Foundations of Cybersecurity", provider: "Google", year: "2025", color: "text-red-400", link: "https://coursera.org/share/17f4cc280b064b1fb3a5ed367a3e203b" },
+    { name: "Excel Intermediate I", provider: "Macquarie University", year: "2021", color: "text-emerald-400", link: "https://coursera.org/share/1659a6b06c865d017b9eb818da3b5cb0" },
+    { name: "MongoDB Intro", provider: "MongoDB", year: "2023", color: "text-green-500", link: "https://www.linkedin.com/in/oscar-antayhua/details/certifications/1752168047950/single-media-viewer/?profileId=ACoAADIfHxcBkuYHEarI05J8JOqtldcHKetdU-E" },
+    { name: "Inmersion IA", provider: "Alura", year: "2025", color: "text-pink-400", link: "https://cursos.alura.com.br/certificate/your-cert-id" },
   ]
 
   const secondRowCertifications = [
-    { name: "Google IT Support", provider: "Google", year: "2024", color: "text-blue-500" },
-    { name: "Operating Systems", provider: "Google", year: "2024", color: "text-indigo-400" },
-    { name: "Security Risks", provider: "Google", year: "2025", color: "text-orange-400" },
-    { name: "Excel Business", provider: "Macquarie University", year: "2021", color: "text-teal-400" },
-    { name: "SQL Basic", provider: "HackerRank", year: "2025", color: "text-cyan-400" },
-    { name: "Make Basic", provider: "Make", year: "2024", color: "text-violet-400" },
+    { name: "Google IT Support", provider: "Google", year: "2024", color: "text-blue-500", link: "https://coursera.org/share/c985ec0f62d29ba1359e0108767d9e36" },
+    { name: "Operating Systems", provider: "Google", year: "2024", color: "text-indigo-400", link: "https://coursera.org/share/0789e5d0e1284c4337397a10d13e38b3" },
+    { name: "Excel Business", provider: "Macquarie University", year: "2021", color: "text-teal-400", link: "https://coursera.org/verify/your-cert-id" },
+    { name: "SQL Basic", provider: "HackerRank", year: "2025", color: "text-cyan-400", link: "https://www.hackerrank.com/certificates/c6977bc29e7a" },
+    { name: "Make Basic", provider: "Make", year: "2024", color: "text-violet-400", link: "https://academy.make.com/certificates/your-cert-id" },
+    { name: "Security Risks", provider: "Google", year: "2025", color: "text-orange-400", link: "https://coursera.org/verify/your-cert-id" },
   ]
 
   const CertificationCard = ({ cert, rowId }: { cert: any; rowId: string }) => (
@@ -38,13 +37,23 @@ export function Certifications() {
       onMouseEnter={() => setPausedRow(rowId)}
       onMouseLeave={() => setPausedRow(null)}
     >
-      <div className="w-48 h-24 sm:w-52 sm:h-28 lg:w-56 lg:h-32 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-xl flex flex-col justify-center items-center p-4">
-        <div className={`text-sm sm:text-base font-semibold ${cert.color} text-center mb-1`}>{cert.name}</div>
-        <div className="text-xs text-neutral-400 text-center mb-2">{cert.provider}</div>
-        <Badge variant="outline" className="text-xs border-white/20 text-neutral-300">
-          {cert.year}
-        </Badge>
-      </div>
+      <a
+        href={cert.link}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="block transition-transform duration-300 hover:scale-105 cursor-pointer"
+        aria-label={`Ver certificación de ${cert.name} por ${cert.provider}`}
+      >
+        <div className="w-48 h-24 sm:w-52 sm:h-28 lg:w-56 lg:h-32 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-xl flex flex-col justify-center items-center p-4 hover:bg-white/10 hover:border-white/20 transition-all duration-300">
+          <div className={`text-xs sm:text-sm font-semibold ${cert.color} text-center mb-1 px-2 leading-tight line-clamp-2 overflow-hidden`}>
+            {cert.name}
+          </div>
+          <div className="text-xs text-neutral-400 text-center mb-2">{cert.provider}</div>
+          <Badge variant="outline" className="text-xs border-white/20 text-neutral-300">
+            {cert.year}
+          </Badge>
+        </div>
+      </a>
     </div>
   )
 
@@ -70,9 +79,9 @@ export function Certifications() {
         </div>
 
         {/* Certification Marquee */}
-        <div className="relative">
+        <div className="relative py-8">
           {/* First Row - Scrolling Right */}
-          <div ref={firstRowRef} className="flex overflow-hidden mb-6 [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]">
+          <div ref={firstRowRef} className="flex overflow-hidden mb-6 py-6 [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]">
             <div
               className={`flex animate-scroll-right whitespace-nowrap ${pausedRow === "first" ? "animation-play-state-paused" : ""}`}
               style={{
@@ -88,7 +97,7 @@ export function Certifications() {
           </div>
 
           {/* Second Row - Scrolling Left */}
-          <div ref={secondRowRef} className="flex overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]">
+          <div ref={secondRowRef} className="flex overflow-hidden py-6 [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]">
             <div
               className={`flex animate-scroll-left whitespace-nowrap ${pausedRow === "second" ? "animation-play-state-paused" : ""}`}
               style={{
