@@ -150,41 +150,6 @@ El portfolio está optimizado para:
 - **Tablet**: 768px-1919px (adaptaciones de layout)
 - **Mobile**: 320px-767px (navegación móvil optimizada)
 
-## 🔧 Configuración de Desarrollo
-
-### Variables de Entorno
-
-```env
-# No se requieren variables de entorno para desarrollo local
-```
-
-### Personalización
-
-1. **Colores**: Modificar en `tailwind.config.ts`
-2. **Animaciones**: Ajustar en `hooks/use-gsap-animations.ts`
-3. **Contenido**: Editar componentes en `components/`
-
-## 📊 Performance
-
-- **Lighthouse Score**: 95+ en todas las métricas
-- **Core Web Vitals**: Optimizado para LCP, FID, CLS
-- **Bundle Size**: Optimizado con code splitting
-- **SEO**: 100% con structured data
-
-## 🤝 Contribución
-
-Si encuentras algún bug o tienes sugerencias:
-
-1. Fork el proyecto
-2. Crea una rama para tu feature (`git checkout -b feature/nueva-caracteristica`)
-3. Commit tus cambios (`git commit -m 'feat: añadir nueva característica'`)
-4. Push a la rama (`git push origin feature/nueva-caracteristica`)
-5. Abre un Pull Request
-
-## 📄 Licencia
-
-Este proyecto está bajo la Licencia MIT. Ver `LICENSE` para más detalles.
-
 ## 👨‍💻 Autor
 
 **Oscar Antayhua**
